@@ -1,25 +1,36 @@
-﻿namespace Progreso3_Huertas
+﻿using Progreso3_Huertas.Models;
+using Progreso3_Huertas.Services;
+
+namespace Progreso3_Huertas
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        ClienteSQLiteBajoNivelServices _sqliteService;
 
         public MainPage()
         {
             InitializeComponent();
+            _sqliteService = new ClienteSQLiteBajoNivelServices();  
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        
+
+        private void GuardarCliente_Clicked(object sender, EventArgs e)
         {
-            count++;
+            Cliente cliente = new Cliente
+            {
+                Nombre = Nombre.Text,
+                Empresa = Empresa.Text,
+                AntiguedadMeses = AntiguedadMeses.Text,
+                Activo = Activo.Text
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            };
+            var guardar = _sqliteService.InsertarCliente(cliente);
+            if (guardar)
+            {
+                var cliente
+            }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
         }
-    }
 
-}
+    }

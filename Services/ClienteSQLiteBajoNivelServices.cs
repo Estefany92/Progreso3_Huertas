@@ -11,7 +11,7 @@ namespace Progreso3_Huertas.Services
 {
     class ClienteSQLiteBajoNivelServices : IClientesService
     {
-        string _dbPath = FileSystem.AppDataDirectory+"/cliente.db3";
+        string _dbPath = FileSystem.AppDataDirectory+"/Logs_Huertas.txt";
         SQLiteAsyncConnection _sqlConnection;
 
         public async void Init()
@@ -50,7 +50,7 @@ namespace Progreso3_Huertas.Services
             
             try
             {
-                _sqlConnection.InsertAsync(cliente);
+                await _sqlConnection.InsertAsync(cliente);
                 return true;
             }
             catch(Exception)
@@ -65,7 +65,7 @@ namespace Progreso3_Huertas.Services
         {
             try
             {
-                _sqlConnection.DeleteAsync(id);
+                await _sqlConnection.DeleteAsync(id);
                 return true;
             }
             catch (Exception)
