@@ -26,30 +26,55 @@ namespace Progreso3_Huertas.Services
         }
         public Task<bool> AntiguedadEmpresaCliente(int AntiguedadMeses)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                _sqlConnection.DeleteAsync(id);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public Task<List<Cliente>> DevuelveListadoCliente()
+        public async Task<List<Cliente>> DevuelveListadoCliente()
         {
             try
             {
-                var clientes = _sqlConnection.Table<Cliente>().ToListAsync();
+                var clientes = await _sqlConnection.Table<Cliente>().ToListAsync();
                 return clientes;
             }
-            catch
+            catch(Exception)
             {
                 throw;
             }
         }
 
 
-        public Task<bool> InsertarCliente(Cliente cliente)
+        public async  Task<bool> InsertarCliente(Cliente cliente)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _sqlConnection.InsertAsync(cliente);
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
-        public Task<bool> EliminarCliente(int id)
+        public async Task<bool> EliminarCliente(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _sqlConnection.DeleteAsync(id);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         
