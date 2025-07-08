@@ -13,7 +13,6 @@ namespace Progreso3_Huertas.Interfaces
         public Task<List<Cliente>> DevuelveListadoCliente();
         public Task<bool> InsertarCliente(Cliente cliente);
         public Task<bool> EliminarCliente(int id);
-        public Task<bool> AntiguedadEmpresaCliente(int AntiguedadMeses);
 
 
     }

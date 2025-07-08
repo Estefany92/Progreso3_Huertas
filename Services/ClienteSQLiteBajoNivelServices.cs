@@ -24,19 +24,7 @@ namespace Progreso3_Huertas.Services
         {
             Init();
         }
-        public Task<bool> AntiguedadEmpresaCliente(int AntiguedadMeses)
-        {
-
-            try
-            {
-                _sqlConnection.DeleteAsync(id);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+        
 
         public async Task<List<Cliente>> DevuelveListadoCliente()
         {
@@ -54,6 +42,12 @@ namespace Progreso3_Huertas.Services
 
         public async  Task<bool> InsertarCliente(Cliente cliente)
         {
+            int antiguedadDias = cliente.AntiguedadMeses * 10;
+            if (antiguedadDias > 1500)
+            {
+                return false;
+            }
+            
             try
             {
                 _sqlConnection.InsertAsync(cliente);
@@ -61,8 +55,11 @@ namespace Progreso3_Huertas.Services
             }
             catch(Exception)
             {
+                Console.WriteLine($"Error al insertar cliente");
                 return false;
+                
             }
+
         }
         public async Task<bool> EliminarCliente(int id)
         {
